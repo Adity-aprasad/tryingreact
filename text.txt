@@ -1,0 +1,37 @@
+import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+
+const Profile = ({ route }) => {
+  const { username, password } = route.params || {}; // Access passed data with fallback
+
+  const { credentials } = route.params || {}; 
+  return (
+    <View style={styles.container}>
+      <Text style={styles.text}>Hello {username || 'Guest'}!</Text>
+      <Text style={styles.text}>Your password is {password || 'N/A'}</Text>
+      {credentials ? (
+        <>
+          <Text style={styles.text}>Username: {credentials.username}</Text>
+          <Text style={styles.text}>Password: {credentials.password}</Text>
+        </>
+      ) : (
+        <Text style={styles.text}>No credentials available</Text>
+      )}
+    </View>
+  );
+};
+
+export default Profile;
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  text: {
+    fontSize: 18,
+    marginVertical: 10,
+    color: '#333',
+  },
+});
